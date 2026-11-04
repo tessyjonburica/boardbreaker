@@ -38,13 +38,13 @@ stops as soon as the evidence points at a part.
 
 ![BoardBreaker interface](docs/screenshot.png)
 
+Live: **https://boardbreaker-ten.vercel.app**
+
 The board is the interface: probe points light up as they are measured, and the
 ranked suspects are boxed on the photo.
 
 A recorded run is in [`docs/boardbreaker-demo.mp4`](docs/boardbreaker-demo.mp4)
-(54s, silent). It plays fault `F01` end to end at 1440x900: the agent measures
-`VIN_RAW`, finds the fuse output dead, confirms with a resistance reading, and
-returns `F1` at 97% in three probes of a six-probe budget.
+(1m35s, silent, 1440x900). It plays fault F01 end to end: the reported symptom, the probes the agent chooses, the ranked suspects and the solver cross-check.
 
 ## Results
 
