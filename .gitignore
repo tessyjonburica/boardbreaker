@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+
+# Recorded runs and scratch artifacts stay local,
+# except the two files the server reads at startup.
+out/*
+!out/component-map.json
+!out/bb100.png
+
+.vercel

@@ -1,0 +1,10 @@
+﻿const fs = require("fs");
+let p = "src\netlist\board.ts";
+let s = fs.readFileSync(p, "utf8");
+s = s.replace("  parts: PartOverride[];", "  \** only parts listed in parts are electrically modelled *\\n  strict?: boolean;\n  parts: PartOverride[];");
+s = s.replace("  const components: ComponentSpec[] = [];\n  const used = new Set<string>();", "  const components: ComponentSpec[] = [];");
+s = s.replace("    used.add(comp.ref);\n", "");
+s = s.replace("    const ov = overrides.get(comp.ref);\n    if (ov?.skip) continue;", "    const ov = overrides.get(comp.ref);\n    if (ov?.skip) continue;\n    if (profile.strict && !ov) continue;");
+s = s.replace('      const r = ov?.resistance ?? (parseResistance(comp.value) ?? (role === "fuse" ? 0.05 : 1));\n      if (!Number.isFinite(r) || r < 0) continue;', '      const parsed = parseResistance(comp.value);\n      const r = ov?.resistance ?? parsed ?? (role === "fuse" ? 0.05 : 1);\n      if (!Number.isFinite(r) || r < 0) continue;\n      if (parsed === undefined && ov?.resistance === undefined && \^(NA|DNP|NM)$\i.test(comp.value.trim())) continue;');
+fs.writeFileSync(p, s);
+console.log("patched");

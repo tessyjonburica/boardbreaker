@@ -1,0 +1,45 @@
+{
+  "name": "boardbreaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "dev": "tsx watch server/index.ts",
+    "check:key": "tsx src\\eval\\check-key.ts",
+    "dev:web": "vite",
+    "build:web": "vite build",
+    "start": "tsx server/index.ts",
+    "eval": "tsx src/eval/run.ts",
+    "agent": "tsx src/eval/agent-run.ts",
+    "check": "node scripts/check-api.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "zod": "^4.6.7",
+    "vite": "^7.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "express": "^5.1.0",
+    "@types/express": "^5.0.0",
+    "playwright-core": "^1.55.0",
+    "ffmpeg-static": "^5.2.0"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sharp": "^0.35.5",
+    "@fontsource/space-grotesk": "^5.2.5",
+    "@fontsource/ibm-plex-mono": "^5.2.5"
+  }
+}

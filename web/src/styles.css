@@ -1,0 +1,392 @@
+:root {
+  --ink: #070b0d;
+  --panel: #0b1114;
+  --panel-2: #0e161a;
+  --line: #1b2a30;
+  --line-2: #2a3d45;
+  --text: #e8f0f2;
+  --dim: #8aa0a8;
+  --faint: #5b7078;
+  --probe: #f0b24a;
+  --bad: #ff6a55;
+  --good: #4fe0a0;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--probe);
+  outline-offset: 2px;
+}
+
+.app {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 74px;
+  padding: 10px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mark {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--probe);
+  stroke-width: 1.5;
+}
+
+.mark rect {
+  stroke: var(--line-2);
+}
+
+.mark circle {
+  fill: var(--probe);
+  stroke: none;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand p {
+  margin: 1px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bench-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid var(--line-2);
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+select {
+  appearance: none;
+  min-width: 230px;
+  height: 34px;
+  padding: 0 30px 0 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  background: var(--ink)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238aa0a8'/%3E%3C/svg%3E")
+    no-repeat right 11px center;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.run {
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid var(--probe);
+  border-radius: 2px;
+  background: var(--probe);
+  color: #12100a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.run:hover:not(:disabled) {
+  background: #ffc766;
+}
+
+.run:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.run.ghost {
+  background: transparent;
+  color: var(--probe);
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(370px, 0.9fr);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.board-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 24px 16px;
+  min-width: 0;
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+.board-name {
+  margin: 0;
+  font-size: 13px;
+  color: var(--dim);
+  text-align: right;
+}
+
+.board-name span {
+  color: var(--faint);
+  margin-left: 8px;
+}
+
+.board-frame {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 1300 / 960;
+  max-height: calc(100dvh - 200px);
+  border: 1px solid var(--line-2);
+  background: #0a1013;
+  overflow: hidden;
+}
+
+.board-frame img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tick {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-color: var(--probe);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.8;
+}
+
+.tick.tl {
+  top: 5px;
+  left: 5px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.tick.tr {
+  top: 5px;
+  right: 5px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.tick.bl {
+  bottom: 5px;
+  left: 5px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.tick.br {
+  bottom: 5px;
+  right: 5px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.cross line {
+  stroke: rgba(232, 240, 242, 0.35);
+  stroke-width: 1.6;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--probe);
+  stroke-width: 2.4;
+}
+
+.ring.live {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping 1.5s ease-out infinite;
+}
+
+.dot {
+  fill: var(--probe);
+}
+
+.chip-bg {
+  fill: #070b0d;
+  opacity: 0.9;
+  stroke: var(--probe);
+  stroke-width: 1;
+}
+
+.chip-text {
+  fill: var(--probe);
+  font-family: var(--mono);
+  font-size: 15px;
+}
+
+.suspect rect {
+  fill: rgba(255, 106, 85, 0.07);
+  stroke: var(--bad);
+  stroke-width: 2;
+}
+
+.suspect.first rect {
+  stroke-width: 3;
+}
+
+.suspect circle {
+  fill: var(--bad);
+}
+
+.suspect text {
+  fill: #100b0a;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-right {
+  margin-left: auto;
+  color: var(--faint);
+}
+
+.key {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.key.probe {
+  border: 2px solid var(--probe);
+}
+
+.key.suspect {
+  border: 2px solid var(--bad);
+  border-radius: 1px;
+}
+
+@keyframes ping {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+}
